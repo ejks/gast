@@ -3,10 +3,20 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :promotions
-      resources :vendors
-      get '/vendors/:id/saved_promotions', to: "vendors#saved_promotions"
-      resources :customers
-      get '/customers/:id/owned_deals', to: "customers#owned_deals"
+      resources :vendors do
+        member do
+          get :saved_promotions
+        end
+      end
+
+      resources :customers do
+        member do
+          get :owned_deals
+          post :get_coupon
+          get :show_coupons
+          put :cancel_coupon
+        end
+      end
     end
   end
 end
