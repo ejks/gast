@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :vendors do
         member do
           get :saved_promotions
+          post :create_promotion
         end
       end
 
